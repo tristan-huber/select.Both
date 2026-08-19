@@ -4,6 +4,12 @@
 
 ![](/project.svg)
 
+## Inputs
+
+- **selectionOne** (geometry)
+- **selectionTwo** (geometry)
+
+
 
 
  
