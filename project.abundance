@@ -44,13 +44,13 @@
         }
       ],
       "interpreterVersion": 1,
-      "code": "// select.adjascentFaces\nfunction run(a1: Assembly, a2: Assembly) {\n  const a2leafs: Assembly<LeafGeom>[] = []\n  a2.onLeafs((leaf) => {\n    a2leafs.push(leaf)\n    return leaf;\n  })\n  let index = 0;\n  return a1.onLeafs((leaf) => {\n    if (index > a2leafs.length - 1) {\n      throw new Error(\"Input asesmblies had different number of leafs\")\n    }\n    const otherSel = a2leafs[index].selection;\n    index++;\n\n    const thisSel = leaf.selection;\n    if (thisSel == undefined || otherSel == undefined) {\n      leaf.selection = { edges: [], faces: [], part: false }\n      return leaf;\n    }\n    const newSel = {\n      edges: (thisSel.edges ?? []).filter((i) => (otherSel.edges ?? []).includes(i)),\n      faces: (thisSel.faces ?? []).filter((i) => (otherSel.faces ?? []).includes(i)),\n      part: thisSel.part && otherSel.part\n    }\n    console.log(otherSel)\n    console.log(thisSel)\n    console.log(newSel)\n    leaf.selection = newSel;\n    return leaf;\n  })\n}",
-      "compiledCode": "\"use strict\";\n// select.adjascentFaces\nfunction run(a1, a2) {\n    const a2leafs = [];\n    a2.onLeafs((leaf) => {\n        a2leafs.push(leaf);\n        return leaf;\n    });\n    let index = 0;\n    return a1.onLeafs((leaf) => {\n        if (index > a2leafs.length - 1) {\n            throw new Error(\"Input asesmblies had different number of leafs\");\n        }\n        const otherSel = a2leafs[index].selection;\n        index++;\n        const thisSel = leaf.selection;\n        if (thisSel == undefined || otherSel == undefined) {\n            leaf.selection = { edges: [], faces: [], part: false };\n            return leaf;\n        }\n        const newSel = {\n            edges: (thisSel.edges ?? []).filter((i) => (otherSel.edges ?? []).includes(i)),\n            faces: (thisSel.faces ?? []).filter((i) => (otherSel.faces ?? []).includes(i)),\n            part: thisSel.part && otherSel.part\n        };\n        console.log(otherSel);\n        console.log(thisSel);\n        console.log(newSel);\n        leaf.selection = newSel;\n        return leaf;\n    });\n}\n"
+      "code": "// select.adjascentFaces\nfunction run(a1: Assembly, a2: Assembly) {\n  const a2leafs: Assembly<LeafGeom>[] = []\n  a2.onLeafs((leaf) => {\n    a2leafs.push(leaf)\n    return leaf;\n  })\n  let index = 0;\n  return a1.onLeafs((leaf) => {\n    if (index > a2leafs.length - 1) {\n      throw new Error(\"Input asesmblies had different number of leafs\")\n    }\n    const otherSel = a2leafs[index].selection;\n    index++;\n\n    const thisSel = leaf.selection;\n    if (thisSel == undefined || otherSel == undefined) {\n      leaf.selection = { edges: [], faces: [], part: false }\n      return leaf;\n    }\n    const newSel = {\n      edges: (thisSel.edges ?? []).filter((i) => (otherSel.edges ?? []).includes(i)),\n      faces: (thisSel.faces ?? []).filter((i) => (otherSel.faces ?? []).includes(i)),\n      part: thisSel.part && otherSel.part\n    }\n    console.log(otherSel)\n    console.log(thisSel)\n    console.log(newSel)\n    leaf.selection = newSel;\n    return leaf;\n  })?.skipDisjointPostprocess()\n}",
+      "compiledCode": "\"use strict\";\n// select.adjascentFaces\nfunction run(a1, a2) {\n    const a2leafs = [];\n    a2.onLeafs((leaf) => {\n        a2leafs.push(leaf);\n        return leaf;\n    });\n    let index = 0;\n    return a1.onLeafs((leaf) => {\n        if (index > a2leafs.length - 1) {\n            throw new Error(\"Input asesmblies had different number of leafs\");\n        }\n        const otherSel = a2leafs[index].selection;\n        index++;\n        const thisSel = leaf.selection;\n        if (thisSel == undefined || otherSel == undefined) {\n            leaf.selection = { edges: [], faces: [], part: false };\n            return leaf;\n        }\n        const newSel = {\n            edges: (thisSel.edges ?? []).filter((i) => (otherSel.edges ?? []).includes(i)),\n            faces: (thisSel.faces ?? []).filter((i) => (otherSel.faces ?? []).includes(i)),\n            part: thisSel.part && otherSel.part\n        };\n        console.log(otherSel);\n        console.log(thisSel);\n        console.log(newSel);\n        leaf.selection = newSel;\n        return leaf;\n    })?.skipDisjointPostprocess();\n}\n"
     },
     {
       "atomType": "Input",
       "x": 0.0231,
-      "y": 0.3171428571428571,
+      "y": 0.14,
       "uniqueID": "id-32",
       "name": "selectionOne",
       "type": "geometry"
@@ -58,7 +58,7 @@
     {
       "atomType": "Input",
       "x": 0.0231,
-      "y": 0.6342857142857142,
+      "y": 0.22400000000000003,
       "uniqueID": "id-35",
       "name": "selectionTwo",
       "type": "geometry"
